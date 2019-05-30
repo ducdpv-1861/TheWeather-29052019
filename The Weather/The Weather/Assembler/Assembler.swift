@@ -13,7 +13,6 @@ protocol Assembler: class,
     TheWeatherAssembler,
     FavoritesAssembler,
     
-
 AppAssembler {
     
 }

@@ -24,23 +24,7 @@ extension UIColor {
         return UIColor(hex: 0xF8F8F8)
     }
     
-    @nonobjc class var pearlAqua: UIColor {
-        return UIColor(hex: 0x84DCC6)
-    }
-    
-    @nonobjc class var magicMint: UIColor {
-        return UIColor(hex: 0xA5FFD6)
-    }
-    
-    @nonobjc class var lightSalmonPink: UIColor {
-        return UIColor(hex: 0xFFA69E)
-    }
-    
     @nonobjc class var pastelRed: UIColor {
         return UIColor(hex: 0xFF686B)
-    }
-    
-    @nonobjc class var burlywood: UIColor {
-        return UIColor(hex: 0xDCCB84)
     }
 }
