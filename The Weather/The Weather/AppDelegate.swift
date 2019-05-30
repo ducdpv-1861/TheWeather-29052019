@@ -13,9 +13,28 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        return true
+    var assembler: Assembler = DefaultAssembler()
+    
+    func applicationDidFinishLaunching(_ application: UIApplication) {
+        
+        if NSClassFromString("XCTest") != nil {
+            window?.rootViewController = UnitTestViewController()
+        } else {
+            bindViewModel()
+        }
+    }
+    
+    private func bindViewModel() {
+        window = UIWindow()
+        if let window = window {
+            let viewModel: AppViewModel = assembler.resolve(window: window)
+            let input = AppViewModel.Input(loadTrigger: Driver.just(()))
+            let output = viewModel.transform(input)
+            
+            output.toMain
+                .drive()
+                .disposed(by: rx.disposeBag)
+        }
     }
 }
 
