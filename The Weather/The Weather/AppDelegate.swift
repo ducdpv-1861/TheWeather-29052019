@@ -26,15 +26,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func bindViewModel() {
         window = UIWindow()
-        if let window = window {
-            let viewModel: AppViewModel = assembler.resolve(window: window)
-            let input = AppViewModel.Input(loadTrigger: Driver.just(()))
-            let output = viewModel.transform(input)
-            
-            output.toMain
-                .drive()
-                .disposed(by: rx.disposeBag)
-        }
+        guard let window = window else { return }
+        let vm: AppViewModel = assembler.resolve(window: window)
+        let input = AppViewModel.Input(loadTrigger: Driver.just(()))
+        let output = vm.transform(input)
+        output.toMain
+            .drive()
+            .disposed(by: rx.disposeBag)
     }
 }
 
